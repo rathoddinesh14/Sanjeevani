@@ -2,9 +2,10 @@ import random
 import time
 
 class Device:
-    def __init__(self, device_id, patient_id):
+    def __init__(self, device_id, patient_id, failure_rate):
         self.device_id = device_id
         self.patient_id = patient_id
+        self.failure_rate = failure_rate
 
     def generate_vital_data(self, simulate_abnormal=False):
         
@@ -32,3 +33,6 @@ class Device:
             "oxygen_level": oxygen_level,
             "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         }
+    
+    def device_failure(self):
+        return random.random() < self.failure_rate

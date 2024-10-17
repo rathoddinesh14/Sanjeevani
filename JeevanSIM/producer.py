@@ -18,6 +18,10 @@ producer = KafkaProducer(
 
 # Function to send data to Kafka
 def send_data_to_kafka(device: Device, topic, simulate_abnormal):
+    if device.device_failure():
+        print(f"Device {device.device_id} is failing. Skipping data send.")
+        return
+
     try:
         data = device.generate_vital_data(simulate_abnormal=simulate_abnormal)
         producer.send(topic, key=device.device_id, value=data)
@@ -46,7 +50,7 @@ if __name__ == "__main__":
     num_devices = 10  # Number of devices for the patient
     for i in range(num_devices):
         device_id = f'device_{i+1:03d}'
-        device = Device(device_id, patient.id)
+        device = Device(device_id, patient.id, failure_rate=0.1)
         patient.add_device(device)
 
     print(f"Patient {patient.name} (ID: {patient.id}) has devices: {[d.device_id for d in patient.devices]}")

@@ -23,27 +23,27 @@ else
     sudo systemctl start zookeeper
 fi
 
-# Download Kafka
-KAFKA_VERSION="3.8.0"
-KAFKA_SCALA_VERSION="2.13"
-KAFKA_DOWNLOAD_URL="https://dlcdn.apache.org/kafka/${KAFKA_VERSION}/kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tgz"
+# # Download Kafka
+# KAFKA_VERSION="3.8.0"
+# KAFKA_SCALA_VERSION="2.13"
+# KAFKA_DOWNLOAD_URL="https://dlcdn.apache.org/kafka/${KAFKA_VERSION}/kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tgz"
 
-echo "Downloading Kafka version $KAFKA_VERSION..."
-wget $KAFKA_DOWNLOAD_URL -O /tmp/kafka.tgz
+# echo "Downloading Kafka version $KAFKA_VERSION..."
+# wget $KAFKA_DOWNLOAD_URL -O /tmp/kafka.tgz
 
-# Extract Kafka
-echo "Extracting Kafka..."
-sudo mkdir -p /opt/kafka
-sudo tar -xvzf /tmp/kafka.tgz --strip 1 -C /opt/kafka
+# # Extract Kafka
+# echo "Extracting Kafka..."
+# sudo mkdir -p /opt/kafka
+# sudo tar -xvzf /tmp/kafka.tgz --strip 1 -C /opt/kafka
 
-# Remove the downloaded tar file
-rm /tmp/kafka.tgz
+# # Remove the downloaded tar file
+# rm /tmp/kafka.tgz
 
-# Configure Kafka environment
-echo "Configuring Kafka environment..."
-echo "export KAFKA_HOME=/opt/kafka" >> ~/.bashrc
-echo "export PATH=\$PATH:\$KAFKA_HOME/bin" >> ~/.bashrc
-source ~/.bashrc
+# # Configure Kafka environment
+# echo "Configuring Kafka environment..."
+# echo "export KAFKA_HOME=/opt/kafka" >> ~/.bashrc
+# echo "export PATH=\$PATH:\$KAFKA_HOME/bin" >> ~/.bashrc
+# source ~/.bashrc
 
 # Start Zookeeper (in case it's not running)
 echo "Starting Zookeeper service..."

@@ -26,6 +26,7 @@ def send_data_to_kafka(device: Device, topic):
     except Exception as e:
         print(f"Failed to send data from {device.device_id}: {e}")
 
+
 # Simulate multiple IoT devices for a single patient
 def simulate_iot_devices(patient: Patient, topic, interval=1):
     while True:
@@ -33,10 +34,11 @@ def simulate_iot_devices(patient: Patient, topic, interval=1):
             send_data_to_kafka(device, topic)
         time.sleep(interval)  # Sleep for `interval` seconds before sending next batch of data
 
+
 # Create a patient and multiple devices
 if __name__ == "__main__":
     patient = Patient()
-    num_devices = 1  # Number of devices for the patient
+    num_devices = 10  # Number of devices for the patient
     for i in range(num_devices):
         device_id = f'device_{i+1:03d}'
         device = Device(device_id, patient.id)

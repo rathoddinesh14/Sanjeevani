@@ -15,8 +15,8 @@ def send_data_to_kafka(ds, device: Device, topic, simulate_abnormal):
         data = device.generate_vital_data(simulate_abnormal=simulate_abnormal)
         # TODO send data to kafka datasource
         dataObj = DataObj(topic, device.device_id, data)
-        ds.save(data)
-        print(f"Data sent from {device.device_id}: {data}")
+        ds.save(dataObj)
+        # print(f"Data sent from {device.device_id}: {data}")
     except Exception as e:
         print(f"Failed to send data from {device.device_id}: {e}")
 
